@@ -33,7 +33,6 @@ clusterAutoscaler:
 ingressNginx:
   enable: true  
   namespace: "ingress-nginx"
-  repoURL: "https://kubernetes.github.io/ingress-nginx"
   appVersion: 1.0
   controller:
     service:
