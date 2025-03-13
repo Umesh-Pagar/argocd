@@ -1,0 +1,18 @@
+env: "dev"
+targetRevision: "dev"
+clusters:
+  - name: "aks-dev"
+    provider: "azure"
+  - name: "in-cluster"
+    provider: "aws"
+
+esoConfig:
+  # Azure Configuration
+  azure:
+    clientId: "d1b4feab-2c36-4bec-92e7-7143713243db"
+    tenantId: "45d0c08e-3ba6-4272-9547-d08be59f03fc"
+    keyVaultUrl: "https://kv-tech-mobile-shared.vault.azure.net/"
+  # AWS Configuration
+  aws:
+    roleArn: "arn:aws:iam::070818680311:role/eso-role-tf"
+    region: "us-east-1"
