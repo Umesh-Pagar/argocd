@@ -30,7 +30,7 @@ spec:
             metrics-server:
             {{- toYaml .Values.metricsServer | nindent 14 }}
       destination:
-        name: '{{`{{.name}}`}}'
+        name: '{{`{{.clusterName}}`}}'
         namespace: {{ .Values.metricsServer.namespace }}
       syncPolicy:
         automated:

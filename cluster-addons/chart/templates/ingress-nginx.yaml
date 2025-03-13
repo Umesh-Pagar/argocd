@@ -34,7 +34,7 @@ spec:
             ingress-nginx:
             {{- toYaml .Values.ingressNginx | nindent 14 }}
       destination:
-        name: '{{`{{.name}}`}}'
+        name: '{{`{{.clusterName}}`}}'
         namespace: {{ .Values.ingressNginx.namespace }}
       syncPolicy:
         automated:
