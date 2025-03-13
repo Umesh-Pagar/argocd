@@ -15,7 +15,7 @@ datadogAgent:
 
 # External Secrets Operator
 externalSecrets:
-  enable: true
+  enable: false
   namespace: "external-secrets"
 
 esoConfig:
@@ -31,9 +31,8 @@ clusterAutoscaler:
 
 # nginx Values
 ingressNginx:
-  enable: false  
+  enable: true  
   namespace: "ingress-nginx"
-  repoURL: "https://kubernetes.github.io/ingress-nginx"
   appVersion: 1.0
   controller:
     service:

@@ -4,8 +4,6 @@ kind: ApplicationSet
 metadata:
   name: ingress-nginx-{{ .Values.env }}
   namespace: {{ .Values.namespace }}
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   goTemplate: true
   generators:
@@ -17,7 +15,7 @@ spec:
       {{- end }} 
   template:
     metadata:
-      name: 'ingress-nginx{{`{{.clusterName}}`}}'
+      name: 'ingress-nginx-{{`{{.clusterName}}`}}'
     spec:
       project: default
       ports:
