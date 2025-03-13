@@ -1,0 +1,54 @@
+{{- if and (.Values.esoConfig) (.Values.esoConfig.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: eso-config-{{ .Values.env }}
+  namespace: {{ .Values.namespace }}
+spec:
+  goTemplate: true
+  generators:
+  - list:
+      elements:
+      {{- range .Values.clusters }}
+      - clusterName: {{ .name }}
+        provider: {{ .provider }}
+      {{- end }} 
+  template:
+    metadata:
+      name: 'eso-config-{{`{{.clusterName}}`}}'
+    spec:
+      project: default
+      source:
+        repoURL: {{ .Values.repoUrl }}
+        path: cluster-addons/add-ons/eso-config
+        targetRevision: {{ .Values.targetRevision }}
+        helm:
+          values: |
+            provider: '{{`{{.provider}}`}}'
+            serviceAccountName: {{ $.Values.esoConfig.serviceAccountName }}
+            serviceAccountNamespace: {{ $.Values.esoConfig.serviceAccountNamespace }}
+            secrets: {{ toJson $.Values.esoConfig.secrets }}
+            azure:
+              authType: "WorkloadIdentity"
+              clientId: {{ $.Values.esoConfig.azure.clientId }}
+              tenantId: {{ $.Values.esoConfig.azure.tenantId }}
+              keyVaultUrl: {{ $.Values.esoConfig.azure.keyVaultUrl }}
+            aws:
+              roleArn: {{ $.Values.esoConfig.aws.roleArn }}
+              region: {{ $.Values.esoConfig.aws.region }}
+      destination:
+        name: '{{`{{.clusterName}}`}}'
+        namespace: {{ $.Values.esoConfig.namespace }}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions: 
+        - CreateNamespace=true
+        retry:
+          limit: 3
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 2m
+{{- end -}}

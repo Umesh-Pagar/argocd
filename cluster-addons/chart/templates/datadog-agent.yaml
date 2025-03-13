@@ -1,0 +1,50 @@
+{{- if and (.Values.datadogAgent) (.Values.datadogAgent.enable) -}}
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: datadog-{{ .Values.env }}
+  namespace: {{ .Values.namespace }}
+spec:
+  goTemplate: true
+  generators:
+  - list:
+      elements:
+      {{- range .Values.clusters }}
+      - clusterName: {{ .name }}
+        provider: {{ .provider }}
+      {{- end }}
+  template:
+    metadata:
+      name: 'datadog-{{`{{.clusterName}}`}}'
+    spec:
+      project: "default"
+      source:
+        repoURL: {{ .Values.repoUrl }}
+        path: cluster-addons/add-ons/datadog-agent
+        targetRevision: {{ .Values.targetRevision }}
+        helm:
+          values: |
+            provider: '{{`{{.provider}}`}}'
+          parameters:
+            - name: "datadog.apiKeyExistingSecret"
+              value: {{ .Values.datadogAgent.apiKeyExistingSecret }}
+            - name: "datadog.site"
+              value: {{ .Values.datadogAgent.site }}
+            - name: "datadog.clusterName"
+              value: '{{`{{.clusterName}}`}}'
+      destination:
+        name: '{{`{{.clusterName}}`}}'
+        namespace: {{ .Values.datadogAgent.namespace }}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+        retry:
+          limit: 1
+          backoff:
+            duration: 5s
+            factor: 2
+            maxDuration: 1m
+{{- end -}}

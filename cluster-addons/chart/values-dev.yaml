@@ -1,0 +1,38 @@
+env: "dev"
+targetRevision: "dev"
+clusters:
+  - name: "aks-dev"
+    provider: "azure"
+  - name: "in-cluster"
+    provider: "aws"
+
+datadogAgent:
+  enable: false
+
+externalSecrets:
+  enable: false
+
+esoConfig:
+  enable: false
+  # Azure Configuration
+  azure:
+    clientId: "d1b4feab-2c36-4bec-92e7-7143713243db"
+    tenantId: "45d0c08e-3ba6-4272-9547-d08be59f03fc"
+    keyVaultUrl: "https://kv-tech-mobile-shared.vault.azure.net/"
+  # AWS Configuration
+  aws:
+    roleArn: "arn:aws:iam::070818680311:role/eso-role-tf"
+    region: "us-east-1"
+  secrets:
+  - name: "datadog-secret"  # Kubernetes secret name
+    namespace: "datadog"
+    key: "api-key"          # Key in the secret
+    remoteRef:
+      aws: "datadog/api-key"   # AWS Secret Manager secret name
+      azure: "datadog-api-key"   # Azure Key Vault secret name
+  - name: "wiz-secret"
+    namespace: "wiz"
+    key: "api-token"
+    remoteRef:
+      aws: "wiz/api-token-test"
+      azure: "wiz-api-token"

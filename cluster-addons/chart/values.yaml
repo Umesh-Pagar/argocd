@@ -1,0 +1,51 @@
+# Global Values
+repoUrl: "https://github.com/Umesh-Pagar/argocd.git"
+targetRevision: HEAD
+region: ""
+account: ""
+env: "dev"
+namespace: "argocd"
+
+# Datadog Agent Values
+datadogAgent:
+  enable: false
+  apiKeyExistingSecret: "datadog-secret"
+  site: "datadoghq.com"
+  namespace: "datadog"
+
+# External Secrets Operator
+externalSecrets:
+  enable: false
+  namespace: "external-secrets"
+
+esoConfig:
+  enable: false
+  serviceAccountName: "external-secrets-sa"
+  serviceAccountNamespace: "external-secrets"
+
+# Cluster Autoscaler Values
+clusterAutoscaler:
+  enable: false
+  serviceAccountName:
+  namespace: "cluster-autoscaler"
+
+# nginx Values
+ingressNginx:
+  enable: true  
+  namespace: "ingress-nginx"
+  appVersion: 1.0
+  controller:
+    service:
+      targetPorts:
+        http: 80
+
+wiz:
+  enable: false
+  namespace: "wiz"
+  targetRevision: 0.2.37
+
+# Metrics Server Values
+metricsServer:
+  enable: false
+  targetRevision: 3.8.2
+  namespace: "kube-system"
