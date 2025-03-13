@@ -1,0 +1,17 @@
+{{- if .Values.secrets }}
+{{- $namespaces := list }}
+{{- range .Values.secrets }}
+{{- $namespaces = append $namespaces .namespace }}
+{{- end }}
+{{- range $namespaces | uniq }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: {{ . }}
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+{{- end }}
+{{- end }}
