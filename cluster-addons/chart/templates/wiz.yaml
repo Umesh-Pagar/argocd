@@ -51,7 +51,7 @@ spec:
                 enabled: false
       destination:
         namespace: {{ .Values.wiz.namespace }}  # Replace with your desired namespace
-        name: '{{`{{.name}}`}}'
+        name: '{{`{{.clusterName}}`}}'
       syncPolicy:
         automated:
           prune: true

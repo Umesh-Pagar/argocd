@@ -39,7 +39,7 @@ spec:
               roleArn: {{ $.Values.esoConfig.aws.roleArn }}
               region: {{ $.Values.esoConfig.aws.region }}
       destination:
-        name: '{{`{{.name}}`}}'
+        name: '{{`{{.clusterName}}`}}'
         namespace: {{ $.Values.esoConfig.namespace }}
       syncPolicy:
         automated:
