@@ -19,22 +19,9 @@ externalSecrets:
   namespace: "external-secrets"
 
 esoConfig:
-  enable: true
+  enable: false
   serviceAccountName: "external-secrets-sa"
   serviceAccountNamespace: "external-secrets"
-  secrets:
-  - name: "datadog-secret"  # Kubernetes secret name
-    namespace: "datadog"
-    key: "api-key"          # Key in the secret
-    remoteRef:
-      aws: "datadog/api-key"   # AWS Secret Manager secret name
-      azure: "datadog-api-key"   # Azure Key Vault secret name
-  - name: "wiz-secret"
-    namespace: "wiz"
-    key: "api-token"
-    remoteRef:
-      aws: "wiz/api-token-test"
-      azure: "wiz-api-token"
 
 # Cluster Autoscaler Values
 clusterAutoscaler:
