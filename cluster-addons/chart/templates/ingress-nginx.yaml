@@ -17,7 +17,7 @@ spec:
       {{- end }} 
   template:
     metadata:
-      name: 'ingress-nginx{{`{{.clusterName}}`}}'
+      name: 'ingress-nginx-{{`{{.clusterName}}`}}'
     spec:
       project: default
       ports:
