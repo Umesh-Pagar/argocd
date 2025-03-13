@@ -7,13 +7,13 @@ clusters:
     provider: "aws"
 
 datadogAgent:
-  enable: true
+  enable: false
 
 externalSecrets:
-  enable: true
+  enable: false
 
 esoConfig:
-  enable: true
+  enable: false
   # Azure Configuration
   azure:
     clientId: "d1b4feab-2c36-4bec-92e7-7143713243db"
