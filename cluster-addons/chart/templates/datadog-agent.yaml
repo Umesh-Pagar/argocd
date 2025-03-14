@@ -23,11 +23,11 @@ spec:
         chart: datadog
         targetRevision: 3.109.2
         helm:
-        parameters:
-          - name: "datadog.apiKeyExistingSecret"        
-            value: {{ .Values.datadogAgent.apiKeyExistingSecret }}
-          - name: "datadog.clusterName" 
-            value: '{{`{{.clusterName}}`}}'
+          parameters:
+            - name: "datadog.apiKeyExistingSecret"        
+              value: {{ .Values.datadogAgent.apiKeyExistingSecret }}
+            - name: "datadog.clusterName" 
+              value: '{{`{{.clusterName}}`}}'
       destination:
         name: '{{`{{.clusterName}}`}}'
         namespace: {{ .Values.datadogAgent.namespace }}
