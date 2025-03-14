@@ -36,9 +36,6 @@ spec:
         name: '{{`{{.clusterName}}`}}'
         namespace: {{ .Values.datadogAgent.namespace }}
       syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
         syncOptions:
         - CreateNamespace=true
         retry:

@@ -1,13 +1,13 @@
-env: "dev"
-targetRevision: "dev"
+env: "prod"
+targetRevision: "main"
 clusters:
-  - name: "aks-dev"
-    provider: "azure"
-  - name: "in-cluster"
-    provider: "aws"
+  # - name: "aks-dev"
+  #   provider: "azure"
+  # - name: "in-cluster"
+  #   provider: "aws"
 
 datadogAgent:
-  enable: false
+  enable: true
 
 externalSecrets:
   enable: true
@@ -28,6 +28,11 @@ esoConfig:
     namespace: "datadog"
     key: "api-key"          # Key in the secret
     remoteRef:
-      aws: "datadog"   # AWS Secret Manager secret name
-      awsProperty: "api-key"  # AWS Secret Manager secret property
+      aws: "datadog/api-key"   # AWS Secret Manager secret name
       azure: "datadog-api-key"   # Azure Key Vault secret name
+  - name: "wiz-secret"
+    namespace: "wiz"
+    key: "api-token"
+    remoteRef:
+      aws: "wiz/api-token-test"
+      azure: "wiz-api-token"
