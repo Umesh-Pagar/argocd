@@ -31,9 +31,3 @@ esoConfig:
       aws: "datadog"   # AWS Secret Manager secret name
       awsProperty: "api-key"  # AWS Secret Manager secret property
       azure: "datadog-api-key"   # Azure Key Vault secret name
-  - name: "wiz-secret"
-    namespace: "wiz"
-    key: "api-token"
-    remoteRef:
-      aws: "wiz/api-token-test"
-      azure: "wiz-api-token"
