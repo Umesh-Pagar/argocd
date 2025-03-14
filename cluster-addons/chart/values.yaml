@@ -31,7 +31,7 @@ clusterAutoscaler:
 
 # nginx Values
 ingressNginx:
-  enable: true  
+  enable: false  
   namespace: "ingress-nginx"
   appVersion: 1.0
   controller:

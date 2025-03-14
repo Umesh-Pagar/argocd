@@ -6,7 +6,11 @@ clusters:
   - name: "eks-stg"
     provider: "aws"
 
+externalSecrets:
+  enable: true
+
 esoConfig:
+  enable: true
   # Azure Configuration
   azure:
     clientId: "d1b4feab-2c36-4bec-92e7-7143713243db"
@@ -16,3 +20,16 @@ esoConfig:
   aws:
     roleArn: "arn:aws:iam::070818680311:role/eso-role-tf-stg"
     region: "us-east-1"
+  secrets:
+  - name: "datadog-secret"  # Kubernetes secret name
+    namespace: "datadog"
+    key: "api-key"          # Key in the secret
+    remoteRef:
+      aws: "datadog/api-key"   # AWS Secret Manager secret name
+      azure: "datadog-api-key"   # Azure Key Vault secret name
+  - name: "wiz-secret"
+    namespace: "wiz"
+    key: "api-token"
+    remoteRef:
+      aws: "wiz/api-token-test"
+      azure: "wiz-api-token"
