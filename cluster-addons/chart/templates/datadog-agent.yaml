@@ -28,19 +28,6 @@ spec:
             value: {{ .Values.datadogAgent.apiKeyExistingSecret }}
           - name: "datadog.clusterName" 
             value: '{{`{{.clusterName}}`}}'
-        # repoURL: {{ .Values.repoUrl }}
-        # path: cluster-addons/add-ons/datadog-agent
-        # targetRevision: {{ .Values.targetRevision }}
-        # helm:
-        #   values: |
-        #     provider: '{{`{{.provider}}`}}'
-        #   parameters:
-        #     - name: "datadog.apiKeyExistingSecret"
-        #       value: {{ .Values.datadogAgent.apiKeyExistingSecret }}
-        #     - name: "datadog.site"
-        #       value: {{ .Values.datadogAgent.site }}
-        #     - name: "datadog.clusterName"
-        #       value: '{{`{{.clusterName}}`}}'
       destination:
         name: '{{`{{.clusterName}}`}}'
         namespace: {{ .Values.datadogAgent.namespace }}
