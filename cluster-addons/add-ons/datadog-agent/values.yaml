@@ -26,3 +26,13 @@ datadog:
     enableOOMKill: true
     collectDNSStats: false
   kubeStateMetricsEnabled: true
+
+providers:
+  eks:
+    ec2:
+      useHostnameFromFile: true
+  aks:
+    enabled: true
+
+remoteConfiguration:
+  enabled: true
