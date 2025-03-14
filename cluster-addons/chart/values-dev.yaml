@@ -28,7 +28,8 @@ esoConfig:
     namespace: "datadog"
     key: "api-key"          # Key in the secret
     remoteRef:
-      aws: "datadog/api-key/datadog-api-key"   # AWS Secret Manager secret name
+      aws: "datadog"   # AWS Secret Manager secret name
+      awsProperty: "api-key"  # AWS Secret Manager secret property
       azure: "datadog-api-key"   # Azure Key Vault secret name
   - name: "wiz-secret"
     namespace: "wiz"
