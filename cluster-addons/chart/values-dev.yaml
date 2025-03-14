@@ -7,7 +7,7 @@ clusters:
     provider: "aws"
 
 datadogAgent:
-  enable: true
+  enable: false
 
 externalSecrets:
   enable: true
