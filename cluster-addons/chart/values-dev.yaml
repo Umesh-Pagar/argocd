@@ -6,9 +6,6 @@ clusters:
   - name: "in-cluster"
     provider: "aws"
 
-datadogAgent:
-  enable: false
-
 externalSecrets:
   enable: true
 
