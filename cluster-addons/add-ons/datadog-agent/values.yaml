@@ -3,7 +3,7 @@
 targetSystem: "linux"
 datadog:
   # If not using secrets, then use apiKey and appKey instead
-  #apiKeyExistingSecret: <DATADOG_API_KEY_SECRET>
+  apiKeyExistingSecret: datadog-secret
   #appKeyExistingSecret: <DATADOG_APP_KEY_SECRET>
   # clusterName:  eks-app
   # datadog.kubelet.tlsVerify should be `false` on kind and minikube
