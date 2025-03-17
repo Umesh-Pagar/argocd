@@ -28,10 +28,3 @@ esoConfig:
       aws: "datadog"   # AWS Secret Manager secret name
       awsProperty: "api-key"  # AWS Secret Manager secret property
       azure: "datadog-api-key"   # Azure Key Vault secret name
-  - name: "datadog-secret"  # Kubernetes secret name
-    namespace: "default"
-    key: "api-key"          # Key in the secret
-    remoteRef:
-      aws: "datadog"   # AWS Secret Manager secret name
-      awsProperty: "api-key"  # AWS Secret Manager secret property
-      azure: "datadog-api-key"   # Azure Key Vault secret name

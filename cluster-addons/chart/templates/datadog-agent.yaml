@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: datadog-{{ .Values.env }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Values.datadogAgent.namespace }}
 spec:
   goTemplate: true
   generators:
