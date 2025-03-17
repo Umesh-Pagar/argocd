@@ -8,7 +8,7 @@ namespace: "argocd"
 
 # Datadog Agent Values
 datadogAgent:
-  enable: false
+  enable: true
   apiKeyExistingSecret: datadog-secret
   site: "datadoghq.com"
   namespace: "datadog"
