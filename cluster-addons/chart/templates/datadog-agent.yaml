@@ -19,16 +19,15 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: {{ .Values.repoUrl }}
-        path: cluster-addons/add-ons/datadog-agent
-        targetRevision: {{ .Values.targetRevision }}
+        repoURL: https://helm.datadoghq.com
+        chart: datadog
+        targetRevision: 3.109.2
         helm:
           values: |
             datadog:
               apiKeyExistingSecret: {{ .Values.datadogAgent.apiKeyExistingSecret }}
               site: {{ .Values.datadogAgent.site }}
               namespace: {{ .Values.datadogAgent.namespace }}
-              provider: '{{`{{.provider}}`}}'
       destination:
         name: '{{`{{.clusterName}}`}}'
         namespace: {{ .Values.datadogAgent.namespace }}
