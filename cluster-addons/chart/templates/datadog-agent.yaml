@@ -19,9 +19,9 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: {{ .Values.repoUrl }}
-        path: cluster-addons/add-ons/datadog-agent
-        targetRevision: {{ .Values.targetRevision }}
+        repoURL: {{ .Values.datadogAgent.repoUrl }}
+        chart: datadog
+        targetRevision: {{ .Values.datadogAgent.targetRevision }}
         helm:
           values: |
             datadog:

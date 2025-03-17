@@ -9,6 +9,8 @@ namespace: "argocd"
 # Datadog Agent Values
 datadogAgent:
   enable: true
+  repoUrl: "https://helm.datadoghq.com"
+  targetRevision: 3.109.2
   apiKeyExistingSecret: datadog-secret
   site: "datadoghq.com"
   namespace: "datadog"
