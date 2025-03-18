@@ -18,10 +18,6 @@ spec:
       name: 'ingress-nginx-{{`{{.clusterName}}`}}'
     spec:
       project: default
-      ports:
-        appProtocol: https
-        port: 443
-        targetPort: 80
       source:
         repoURL: {{ .Values.ingressNginx.repoUrl }}
         chart: ingress-nginx
