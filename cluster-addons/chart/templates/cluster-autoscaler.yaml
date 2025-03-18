@@ -19,9 +19,9 @@ spec:
     spec:
       project: default
       source:
-        repoURL: {{ .Values.repoUrl }}
-        path: cluster-addons/add-ons/cluster-autoscaler
-        targetRevision: {{ .Values.targetRevision }}
+        repoURL: {{ .Values.clusterAutoscaler.repoUrl }}
+        chart: cluster-autoscaler
+        targetRevision: {{ .Values.clusterAutoscaler.targetRevision }}
         helm:
           values: |
             provider: '{{`{{.provider}}`}}'

@@ -9,7 +9,7 @@ namespace: "argocd"
 # Datadog Agent Values
 datadogAgent:
   enable: true
-  repoUrl: "https://helm.datadoghq.com"
+  repoUrl: https://helm.datadoghq.com
   targetRevision: 3.109.2
   apiKeyExistingSecret: datadog-secret
   site: "datadoghq.com"
@@ -18,23 +18,46 @@ datadogAgent:
 # External Secrets Operator
 externalSecrets:
   enable: false
+  repoUrl: https://charts.external-secrets.io
+  targetRevision: 0.14.2
   namespace: "external-secrets"
 
 esoConfig:
-  enable: false
+  enable: true
   serviceAccountName: "external-secrets-sa"
   serviceAccountNamespace: "external-secrets"
+  # Azure Configuration
+  azure:
+    clientId: "d1b4feab-2c36-4bec-92e7-7143713243db"
+    tenantId: "45d0c08e-3ba6-4272-9547-d08be59f03fc"
+    keyVaultUrl: "https://kv-tech-mobile-shared.vault.azure.net/"
+  # AWS Configuration
+  aws:
+    roleArn: "arn:aws:iam::070818680311:role/eso-role-tf"
+    region: "us-east-1"
+  secrets:
+  - name: "datadog-secret"  # Kubernetes secret name
+    namespace: "datadog"
+    key: "api-key"          # Key in the secret
+    remoteRef:
+      aws: "datadog"   # AWS Secret Manager secret name
+      awsProperty: "api-key"  # AWS Secret Manager secret property
+      azure: "datadog-api-key"   # Azure Key Vault secret name
 
 # Cluster Autoscaler Values
 clusterAutoscaler:
-  enable: false
+  enable: true
+  repoUrl: https://kubernetes.github.io/autoscaler
+  targetRevision: 9.19.2
   serviceAccountName:
   namespace: "cluster-autoscaler"
 
 # nginx Values
 ingressNginx:
-  enable: false  
+  enable: true 
   namespace: "ingress-nginx"
+  repoUrl: https://kubernetes.github.io/ingress-nginx
+  targetRevision: 4.12.0
   appVersion: 1.0
   controller:
     service:
@@ -42,12 +65,15 @@ ingressNginx:
         http: 80
 
 wiz:
-  enable: false
-  namespace: "wiz"
+  enable: true
+  repoUrl: https://wiz-sec.github.io/charts
+  chart: wiz-kubernetes-integration
+  namespace: wiz
   targetRevision: 0.2.37
 
 # Metrics Server Values
 metricsServer:
-  enable: false
+  enable: true
+  repoUrl: "https://kubernetes-sigs.github.io/metrics-server"
   targetRevision: 3.8.2
   namespace: "kube-system"

@@ -19,9 +19,8 @@ spec:
     spec:  
       project: default  # Replace with your Argo CD project name  
       source:
-        path: cluster-addons/add-ons/wiz-agent 
-        repoURL: {{ .Values.repoUrl }}  # The Git repository URL
-        targetRevision: {{ .Values.targetRevision }}  # Replace with the desired chart version
+        repoURL: {{ .Values.wiz.repoUrl }}  # The Git repository URL
+        targetRevision: {{ .Values.wiz.targetRevision }}  # Replace with the desired chart version
         helm:
           values: |
             provider: '{{`{{.provider}}`}}'
