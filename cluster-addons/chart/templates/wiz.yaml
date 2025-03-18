@@ -20,7 +20,7 @@ spec:
       project: default  # Replace with your Argo CD project name  
       source:
         repoURL: {{ .Values.wiz.repoUrl }}  # The Git repository URL
-        chart: wiz-sec
+        chart: wiz-kubernetes-integration
         targetRevision: {{ .Values.wiz.targetRevision }}  # Replace with the desired chart version
         helm:
           values: |
