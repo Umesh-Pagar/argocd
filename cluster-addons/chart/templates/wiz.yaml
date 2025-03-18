@@ -43,10 +43,7 @@ spec:
                 name: "sensor-image-pull"
 
             wiz-admission-controller:
-              enabled: false
-
-              kubernetesAuditLogsWebhook:
-                enabled: false
+              enabled: true
       destination:
         namespace: {{ .Values.wiz.namespace }}  # Replace with your desired namespace
         name: '{{`{{.clusterName}}`}}'

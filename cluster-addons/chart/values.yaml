@@ -54,7 +54,7 @@ clusterAutoscaler:
 
 # nginx Values
 ingressNginx:
-  enable: true 
+  enable: false 
   namespace: "ingress-nginx"
   repoUrl: https://kubernetes.github.io/ingress-nginx
   targetRevision: 4.12.0
