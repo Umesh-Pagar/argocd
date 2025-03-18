@@ -4,8 +4,6 @@ kind: ApplicationSet
 metadata:
   name: eso-config-{{ .Values.env }}
   namespace: {{ .Values.namespace }}
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   goTemplate: true
   generators:

@@ -4,8 +4,6 @@ kind: ApplicationSet
 metadata:
   name: wiz-agent-{{ .Values.env }}
   namespace: {{ .Values.namespace }}
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   goTemplate: true
   generators:
