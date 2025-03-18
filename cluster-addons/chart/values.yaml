@@ -46,7 +46,7 @@ esoConfig:
 
 # Cluster Autoscaler Values
 clusterAutoscaler:
-  enable: true
+  enable: false
   repoUrl: https://kubernetes.github.io/autoscaler
   targetRevision: 9.19.2
   serviceAccountName:

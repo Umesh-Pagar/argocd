@@ -24,6 +24,8 @@ spec:
         targetRevision: {{ .Values.metricsServer.targetRevision }}
         helm:
           values: |
+            args:
+              - --kubelet-insecure-tls
             provider: '{{`{{.provider}}`}}'
             metrics-server:
             {{- toYaml .Values.metricsServer | nindent 14 }}
