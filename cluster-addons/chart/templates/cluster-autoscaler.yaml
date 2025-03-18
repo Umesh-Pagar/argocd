@@ -3,7 +3,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: autoscaler-{{ .Values.env }}
-  namespace: {{ .Values.namespace }}
+  namespace: external-secrets
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
