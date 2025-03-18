@@ -32,12 +32,12 @@ spec:
                   name: "wiz-api-token"
 
             wiz-kubernetes-connector:
-              enabled: false
+              enabled: true
               broker:
-                enabled: false
+                enabled: true
 
             wiz-sensor:
-              enabled: true
+              enabled: false
               imagePullSecret:
                 create: false # eso creates this secrets
                 name: "sensor-image-pull"
