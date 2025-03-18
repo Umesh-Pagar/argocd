@@ -57,6 +57,7 @@ esoConfig:
         azure: "wiz-clientId"
   - name: "sensor-image-pull"
     namespace: "wiz"
+    type: "docker-registry"
     keys:
     - key: "docker-server"
       remoteRef:
