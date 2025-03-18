@@ -17,13 +17,13 @@ datadogAgent:
 
 # External Secrets Operator
 externalSecrets:
-  enable: false
+  enable: true
   repoUrl: https://charts.external-secrets.io
   targetRevision: 0.14.2
   namespace: "external-secrets"
 
 esoConfig:
-  enable: false
+  enable: true
   serviceAccountName: "external-secrets-sa"
   serviceAccountNamespace: "external-secrets"
   # Azure Configuration
@@ -43,10 +43,22 @@ esoConfig:
       aws: "datadog"   # AWS Secret Manager secret name
       awsProperty: "api-key"  # AWS Secret Manager secret property
       azure: "datadog-api-key"   # Azure Key Vault secret name
+  - name: "wiz-api-token"
+    namespace: "wiz"
+    key: "clientId"
+    remoteRef:
+      aws: "clientId"
+      azure: "wiz-clientId"
+  - name: "wiz-api-token"
+    namespace: "wiz"
+    key: "clientToken"
+    remoteRef:
+      aws: "clientToken"
+      azure: "wiz-clientToken"
 
 # Cluster Autoscaler Values
 clusterAutoscaler:
-  enable: true
+  enable: false
   repoUrl: https://kubernetes.github.io/autoscaler
   targetRevision: 9.19.2
   serviceAccountName:
@@ -54,7 +66,7 @@ clusterAutoscaler:
 
 # nginx Values
 ingressNginx:
-  enable: true 
+  enable: false 
   namespace: "ingress-nginx"
   repoUrl: https://kubernetes.github.io/ingress-nginx
   targetRevision: 4.12.0
@@ -68,7 +80,7 @@ wiz:
 
 # Metrics Server Values
 metricsServer:
-  enable: true
+  enable: false
   repoUrl: "https://kubernetes-sigs.github.io/metrics-server"
   targetRevision: 3.8.2
   namespace: "kube-system"
