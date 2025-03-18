@@ -37,7 +37,7 @@ spec:
                 enabled: true
 
             wiz-sensor:
-              enabled: true
+              enabled: false
               imagePullSecret:
                 create: false # We create it manually
                 name: "sensor-image-pull"
