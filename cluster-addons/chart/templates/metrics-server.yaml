@@ -25,7 +25,7 @@ spec:
         helm:
           values: |
             args:
-              - --kubelet-insecure-tls
+            - --kubelet-insecure-tls
             provider: '{{`{{.provider}}`}}'
             metrics-server:
             {{- toYaml .Values.metricsServer | nindent 14 }}
