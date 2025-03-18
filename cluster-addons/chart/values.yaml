@@ -17,7 +17,7 @@ datadogAgent:
 
 # External Secrets Operator
 externalSecrets:
-  enable: false
+  enable: true
   repoUrl: https://charts.external-secrets.io
   targetRevision: 0.14.2
   namespace: "external-secrets"
