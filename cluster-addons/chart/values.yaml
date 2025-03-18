@@ -58,11 +58,6 @@ ingressNginx:
   namespace: "ingress-nginx"
   repoUrl: https://kubernetes.github.io/ingress-nginx
   targetRevision: 4.12.0
-  appVersion: 1.0
-  controller:
-    service:
-      targetPorts:
-        http: 80
 
 wiz:
   enable: true
