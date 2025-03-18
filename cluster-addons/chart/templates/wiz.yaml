@@ -37,7 +37,7 @@ spec:
                 enabled: false
 
             wiz-sensor:
-              enabled: false
+              enabled: true
               imagePullSecret:
                 create: false # eso creates this secrets
                 name: "sensor-image-pull"
