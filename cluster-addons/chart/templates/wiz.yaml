@@ -28,7 +28,7 @@ spec:
             global:
               wizApiToken:
                 secret:
-                  create: false # We create it manually
+                  create: false # eso creates this secrets
                   name: "wiz-api-token"
 
             wiz-kubernetes-connector:
@@ -37,9 +37,9 @@ spec:
                 enabled: true
 
             wiz-sensor:
-              enabled: false
+              enabled: true
               imagePullSecret:
-                create: false # We create it manually
+                create: false # eso creates this secrets
                 name: "sensor-image-pull"
 
             wiz-admission-controller:
