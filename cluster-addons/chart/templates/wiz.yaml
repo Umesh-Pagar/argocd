@@ -25,7 +25,7 @@ spec:
         helm:
           values: |
             provider: '{{`{{.provider}}`}}'
-            {{- toYaml .Values.wiz | nindent 14 }}
+            {{- toYaml .Values.wiz | nindent 12 }}
       destination:
         namespace: {{ .Values.wiz.namespace }}  # Replace with your desired namespace
         name: '{{`{{.clusterName}}`}}'
