@@ -96,22 +96,23 @@ wiz:
   chart: wiz-kubernetes-integration
   namespace: wiz
   targetRevision: 0.2.37
-  global:
-    wizApiToken:
-      secret:
-        create: false # eso creates this secrets
-        name: "wiz-api-token"
-  wiz-kubernetes-connector:
-    enabled: true
-    broker:
+  values:
+    global:
+      wizApiToken:
+        secret:
+          create: false # eso creates this secrets
+          name: "wiz-api-token"
+    wiz-kubernetes-connector:
       enabled: true
-  wiz-sensor:
-    enabled: true
-    imagePullSecret:
-      create: false # eso creates this secrets
-      name: "sensor-image-pull"
-  wiz-admission-controller:
-    enabled: true
+      broker:
+        enabled: true
+    wiz-sensor:
+      enabled: true
+      imagePullSecret:
+        create: false # eso creates this secrets
+        name: "sensor-image-pull"
+    wiz-admission-controller:
+      enabled: true
 
 # Metrics Server Values
 metricsServer:
