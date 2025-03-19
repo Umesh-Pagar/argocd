@@ -28,33 +28,12 @@ spec:
               apiKeyExistingSecret: {{ .Values.datadogAgent.apiKeyExistingSecret }}
               site: {{ .Values.datadogAgent.site }}
               namespace: {{ .Values.datadogAgent.namespace }}
-              logs:
-                enabled: true
-                containerCollectAll: true
-                containerCollectUsingFiles: true
-              apm:
-                portEnabled: true
-                socketPath: /var/run/datadog/apm.socket
-                hostSocketPath: /var/run/datadog/
-              processAgent:
-                enabled: true
-                processCollection: false
-              systemProbe:
-                enableTCPQueueLength: false
-                enableOOMKill: true
-                collectDNSStats: false
-              kubeStateMetricsEnabled: true
-              orchestratorExplorer:
-                enabled: true
-              kubelet:
-                host:
-                  valueFrom:
-                    fieldRef:
-                      fieldPath: spec.nodeName
-                hostCAPath: /etc/kubernetes/certs/kubeletserver.crt
+              {{ toYaml .Values.datadogAgent.datadog | nindent 14 }}
+            {{`{{- if eq .provider "azure" }}`}}
             providers:
               aks:
                 enabled: true
+            {{`{{- end }}`}}
             remoteConfiguration:
               enabled: true
       destination:

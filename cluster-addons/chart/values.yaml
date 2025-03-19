@@ -14,6 +14,31 @@ datadogAgent:
   apiKeyExistingSecret: datadog-secret
   site: datadoghq.com
   namespace: datadog
+  datadog:
+    logs:
+      enabled: true
+      containerCollectAll: true
+      containerCollectUsingFiles: true
+    apm:
+      portEnabled: true
+      socketPath: /var/run/datadog/apm.socket
+      hostSocketPath: /var/run/datadog/
+    processAgent:
+      enabled: true
+      processCollection: false
+    systemProbe:
+      enableTCPQueueLength: false
+      enableOOMKill: true
+      collectDNSStats: false
+    kubeStateMetricsEnabled: true
+    orchestratorExplorer:
+      enabled: true
+    kubelet:
+      host:
+        valueFrom:
+          fieldRef:
+            fieldPath: spec.nodeName
+      hostCAPath: /etc/kubernetes/certs/kubeletserver.crt
 
 # External Secrets Operator
 externalSecrets:
