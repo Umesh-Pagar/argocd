@@ -44,6 +44,8 @@ spec:
                 enableOOMKill: true
                 collectDNSStats: false
               kubeStateMetricsEnabled: true
+              orchestratorExplorer:
+                enabled: true
             providers:
               aks:
                 enabled: true
