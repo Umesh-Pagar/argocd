@@ -33,12 +33,6 @@ datadogAgent:
     kubeStateMetricsEnabled: true
     orchestratorExplorer:
       enabled: true
-    kubelet:
-      host:
-        valueFrom:
-          fieldRef:
-            fieldPath: spec.nodeName
-      hostCAPath: /etc/kubernetes/certs/kubeletserver.crt
 
 # External Secrets Operator
 externalSecrets:
