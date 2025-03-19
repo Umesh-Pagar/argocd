@@ -25,25 +25,7 @@ spec:
         helm:
           values: |
             provider: '{{`{{.provider}}`}}'
-            global:
-              wizApiToken:
-                secret:
-                  create: false # eso creates this secrets
-                  name: "wiz-api-token"
-
-            wiz-kubernetes-connector:
-              enabled: true
-              broker:
-                enabled: true
-
-            wiz-sensor:
-              enabled: true
-              imagePullSecret:
-                create: false # eso creates this secrets
-                name: "sensor-image-pull"
-
-            wiz-admission-controller:
-              enabled: true
+            {{- toYaml .Values.wiz | nindent 14 }}
       destination:
         namespace: {{ .Values.wiz.namespace }}  # Replace with your desired namespace
         name: '{{`{{.clusterName}}`}}'
