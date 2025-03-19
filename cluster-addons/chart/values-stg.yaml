@@ -5,3 +5,7 @@ clusters:
     provider: "azure"
   - name: "eks-stg"
     provider: "aws"
+
+esoConfig:
+  aws:
+    roleArn: "arn:aws:iam::070818680311:role/eso-role-tf-stg"

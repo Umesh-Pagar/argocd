@@ -5,3 +5,7 @@ clusters:
     provider: "azure"
   - name: "in-cluster"
     provider: "aws"
+
+esoConfig:
+  aws:
+    roleArn: "arn:aws:iam::070818680311:role/eso-role-tf"
