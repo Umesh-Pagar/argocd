@@ -62,9 +62,8 @@ esoConfig:
     - key: "docker-username"
       remoteRef:
         aws: "docker-username"
-        azure: "wiz-sensor-password"
+        azure: "wiz-sensor-username"
     
-
 # Cluster Autoscaler Values
 clusterAutoscaler:
   enable: true
