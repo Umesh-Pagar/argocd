@@ -46,12 +46,12 @@ spec:
               kubeStateMetricsEnabled: true
               orchestratorExplorer:
                 enabled: true
-                kubelet:
-                  host:
-                    valueFrom:
-                      fieldRef:
-                        fieldPath: spec.nodeName
-                  hostCAPath: /etc/kubernetes/certs/kubeletserver.crt
+              kubelet:
+                host:
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: spec.nodeName
+                hostCAPath: /etc/kubernetes/certs/kubeletserver.crt
             providers:
               aks:
                 enabled: true
