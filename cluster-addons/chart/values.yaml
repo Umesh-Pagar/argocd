@@ -59,18 +59,18 @@ esoConfig:
     namespace: "wiz"
     type: "docker-registry"
     keys:
-    - key: "server"
+    - key: server
       remoteRef:
-        aws: "docker-server"
-        azure: "wiz-senser-docker-server"
-    - key: "username"
+        aws: docker-server
+        azure: wiz-senser-docker-server
+    - key: username
       remoteRef:
         aws: "docker-username"
-        azure: "wiz-sensor-username"
-    - key: "password"
+        azure: wiz-sensor-username
+    - key: password
       remoteRef:
         aws: "docker-password"
-        azure: "wiz-sensor-password"
+        azure: wiz-sensor-password
     
 # Cluster Autoscaler Values
 clusterAutoscaler:
