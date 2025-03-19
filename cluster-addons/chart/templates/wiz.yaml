@@ -23,7 +23,8 @@ spec:
         chart: wiz-kubernetes-integration
         targetRevision: {{ .Values.wiz.targetRevision }}  # Replace with the desired chart version
         helm:
-          values: {{ toYaml .Values.wiz | nindent 12 }}
+          values: |
+          {{ toYaml .Values.wiz | nindent 12 }}
       destination:
         namespace: {{ .Values.wiz.namespace }}  # Replace with your desired namespace
         name: '{{`{{.clusterName}}`}}'
