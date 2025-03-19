@@ -44,12 +44,6 @@ spec:
                 enableOOMKill: true
                 collectDNSStats: false
               kubeStateMetricsEnabled: true
-              kubelet:
-              host:
-                valueFrom:
-                  fieldRef:
-                    fieldPath: spec.nodeName
-              hostCAPath: /etc/kubernetes/certs/kubeletserver.crt
             providers:
               aks:
                 enabled: true
