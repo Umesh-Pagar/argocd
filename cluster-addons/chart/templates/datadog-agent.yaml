@@ -4,6 +4,9 @@ kind: ApplicationSet
 metadata:
   name: datadog-{{ .Values.env }}
   namespace: {{ .Values.namespace }}
+  labels:
+    addon: datadog
+    environment: {{ .Values.env }}
 spec:
   goTemplate: true
   generators:
@@ -16,6 +19,10 @@ spec:
   template:
     metadata:
       name: 'datadog-{{`{{.clusterName}}`}}'
+      labels:
+        addon: datadog
+        environment: {{ .Values.env }}
+        cluster: '{{`{{.clusterName}}`}}'
     spec:
       project: "default"
       source:
