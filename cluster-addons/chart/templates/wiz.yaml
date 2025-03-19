@@ -26,8 +26,8 @@ spec:
           values: |
             provider: '{{`{{.provider}}`}}'
             global: {{ $.Values.wiz.global }}
-            wiz-kubernetes-connector: { {$.Values.wiz.wiz-kubernetes-connector }}
-            wiz-sensor: {{  $.Values.wiz.wiz-sensor }}
+            wiz-kubernetes-connector: {{ $.Values.wiz.wiz-kubernetes-connector }}
+            wiz-sensor: {{ $.Values.wiz.wiz-sensor }}
             wiz-admission-controller: {{ $.Values.wiz.wiz-admission-controller }}
       destination:
         namespace: {{ .Values.wiz.namespace }}  # Replace with your desired namespace
