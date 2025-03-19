@@ -4,6 +4,9 @@ kind: ApplicationSet
 metadata:
   name: autoscaler-{{ .Values.env }}
   namespace: {{ .Values.namespace }}
+  labels:
+    addon: cluster-autoscaler
+    environment: {{ .Values.env }}
 spec:
   goTemplate: true
   generators:
@@ -16,6 +19,10 @@ spec:
   template:
     metadata:
       name: 'autoscaler-{{`{{.clusterName}}`}}'
+      labels:
+        addon: cluster-autoscaler
+        environment: {{ .Values.env }}
+        cluster: '{{`{{.clusterName}}`}}'
     spec:
       project: default
       source:
