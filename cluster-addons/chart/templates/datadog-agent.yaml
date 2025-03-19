@@ -19,19 +19,39 @@ spec:
     spec:
       project: "default"
       source:
-        repoURL: {{ .Values.repoUrl }}
-        path: cluster-addons/add-ons/datadog-agent
-        targetRevision: {{ .Values.targetRevision }}
+        repoURL: {{ .Values.datadogAgent.repoUrl }}
+        chart: datadog
+        targetRevision: {{ .Values.datadogAgent.targetRevision }}
         helm:
           values: |
-            provider: '{{`{{.provider}}`}}'
-          parameters:
-            - name: "datadog.apiKeyExistingSecret"
-              value: {{ .Values.datadogAgent.apiKeyExistingSecret }}
-            - name: "datadog.site"
-              value: {{ .Values.datadogAgent.site }}
-            - name: "datadog.clusterName"
-              value: '{{`{{.clusterName}}`}}'
+            datadog:
+              apiKeyExistingSecret: {{ .Values.datadogAgent.apiKeyExistingSecret }}
+              site: {{ .Values.datadogAgent.site }}
+              namespace: {{ .Values.datadogAgent.namespace }}
+              logs:
+                enabled: true
+                containerCollectAll: true
+                containerCollectUsingFiles: true
+              apm:
+                portEnabled: true
+                socketPath: /var/run/datadog/apm.socket
+                hostSocketPath: /var/run/datadog/
+              processAgent:
+                enabled: true
+                processCollection: false
+              systemProbe:
+                enableTCPQueueLength: false
+                enableOOMKill: true
+                collectDNSStats: false
+              kubeStateMetricsEnabled: true
+            providers:
+              eks:
+                ec2:
+                  useHostnameFromFile: true
+              aks:
+                enabled: true
+            remoteConfiguration:
+              enabled: true
       destination:
         name: '{{`{{.clusterName}}`}}'
         namespace: {{ .Values.datadogAgent.namespace }}

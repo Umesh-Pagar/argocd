@@ -19,34 +19,12 @@ spec:
     spec:  
       project: default  # Replace with your Argo CD project name  
       source:
-        path: cluster-addons/add-ons/wiz-agent 
-        repoURL: {{ .Values.repoUrl }}  # The Git repository URL
-        targetRevision: {{ .Values.targetRevision }}  # Replace with the desired chart version
+        repoURL: {{ .Values.wiz.repoUrl }}  # The Git repository URL
+        chart: wiz-kubernetes-integration
+        targetRevision: {{ .Values.wiz.targetRevision }}  # Replace with the desired chart version
         helm:
           values: |
-            provider: '{{`{{.provider}}`}}'
-            global:
-              wizApiToken:
-                secret:
-                  create: false # We create it manually
-                  name: "wiz-api-token"
-
-            wiz-kubernetes-connector:
-              enabled: true
-              broker:
-                enabled: true
-
-            wiz-sensor:
-              enabled: true
-              imagePullSecret:
-                create: false # We create it manually
-                name: "sensor-image-pull"
-
-            wiz-admission-controller:
-              enabled: false
-
-              kubernetesAuditLogsWebhook:
-                enabled: false
+          {{ toYaml .Values.wiz.values | nindent 12 }}
       destination:
         namespace: {{ .Values.wiz.namespace }}  # Replace with your desired namespace
         name: '{{`{{.clusterName}}`}}'

@@ -19,11 +19,13 @@ spec:
     spec:
       project: default
       source:
-        repoURL: {{ .Values.repoUrl }}
-        path: cluster-addons/add-ons/metrics-server
-        targetRevision: {{ .Values.targetRevision }}
+        repoURL: {{ .Values.metricsServer.repoUrl }}
+        chart: metrics-server
+        targetRevision: {{ .Values.metricsServer.targetRevision }}
         helm:
           values: |
+            args:
+            - --kubelet-insecure-tls
             provider: '{{`{{.provider}}`}}'
             metrics-server:
             {{- toYaml .Values.metricsServer | nindent 14 }}
