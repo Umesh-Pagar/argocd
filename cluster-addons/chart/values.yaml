@@ -3,8 +3,8 @@ repoUrl: "https://github.com/Umesh-Pagar/argocd.git"
 targetRevision: HEAD
 region: ""
 account: ""
-env: "dev"
-namespace: "argocd"
+env: dev
+namespace: argocd
 
 # Datadog Agent Values
 datadogAgent:
@@ -12,65 +12,70 @@ datadogAgent:
   repoUrl: https://helm.datadoghq.com
   targetRevision: 3.109.2
   apiKeyExistingSecret: datadog-secret
-  site: "datadoghq.com"
-  namespace: "datadog"
+  site: datadoghq.com
+  namespace: datadog
 
 # External Secrets Operator
 externalSecrets:
   enable: true
   repoUrl: https://charts.external-secrets.io
   targetRevision: 0.14.2
-  namespace: "external-secrets"
+  namespace: external-secrets
 
 esoConfig:
   enable: true
-  serviceAccountName: "external-secrets-sa"
-  serviceAccountNamespace: "external-secrets"
+  serviceAccountName: external-secrets-sa
+  serviceAccountNamespace: external-secrets
   # Azure Configuration
   azure:
-    clientId: "d1b4feab-2c36-4bec-92e7-7143713243db"
-    tenantId: "45d0c08e-3ba6-4272-9547-d08be59f03fc"
-    keyVaultUrl: "https://kv-tech-mobile-shared.vault.azure.net/"
+    clientId: d1b4feab-2c36-4bec-92e7-7143713243db
+    tenantId: 45d0c08e-3ba6-4272-9547-d08be59f03fc
+    keyVaultUrl: https://kv-tech-mobile-shared.vault.azure.net/
   # AWS Configuration
   aws:
-    roleArn: "arn:aws:iam::070818680311:role/eso-role-tf"
-    region: "us-east-1"
+    roleArn: arn:aws:iam::070818680311:role/eso-role-tf
+    region: us-east-1
   secrets:
-  - name: "datadog-secret"  # Kubernetes secret name
-    namespace: "datadog"
+  - name: datadog-secret  # Kubernetes secret name
+    namespace: datadog  # Kubernetes secret namespace
     keys: 
-    - key: "api-key"          # Key in the secret
+    - key: api-key  # Kubernetes secret key name
       remoteRef:
-        aws: "datadog"   # AWS Secret Manager secret name
-        awsProperty: "api-key"  # AWS Secret Manager secret property
-        azure: "datadog-api-key"   # Azure Key Vault secret name
-  - name: "wiz-api-token"
-    namespace: "wiz"
+        aws: datadog  # AWS Secret Manager secret name
+        awsProperty: api-key  # AWS Secret Manager secret key name
+        azure: datadog-api-key   # Azure Key Vault secret name
+  - name: wiz-api-token
+    namespace: wiz
     keys:
-    - key: "clientToken"
+    - key: clientToken
       remoteRef:
-        aws: "clientToken"
-        azure: "wiz-clientToken"
-    - key: "clientId"
+        aws: wiz
+        awsProperty: clientToken
+        azure: wiz-clientToken
+    - key: clientId
       remoteRef:
-        aws: "clientId"
-        azure: "wiz-clientId"
-  - name: "sensor-image-pull"
-    namespace: "wiz"
-    type: "docker-registry"
+        aws: wiz
+        awsProperty: clientId
+        azure: wiz-clientId
+  - name: sensor-image-pull
+    namespace: wiz
+    type: docker-registry
     keys:
     - key: server
       remoteRef:
-        aws: docker-server
-        azure: wiz-senser-docker-server
+        aws: wiz-sensor
+        awsProperty: docker-server
+        azure: wiz-sensor-docker-server
     - key: username
       remoteRef:
-        aws: "docker-username"
-        azure: wiz-sensor-username
+        aws: wiz-sensor
+        awsProperty: docker-username
+        azure: wiz-sensor-docker-username
     - key: password
       remoteRef:
-        aws: "docker-password"
-        azure: wiz-sensor-password
+        aws: wiz-sensor
+        awsProperty: docker-password
+        azure: wiz-sensor-docker-password
     
 # Cluster Autoscaler Values
 clusterAutoscaler:
@@ -78,12 +83,12 @@ clusterAutoscaler:
   repoUrl: https://kubernetes.github.io/autoscaler
   targetRevision: 9.19.2
   serviceAccountName:
-  namespace: "cluster-autoscaler"
+  namespace: cluster-autoscaler
 
 # nginx Values
 ingressNginx:
   enable: true 
-  namespace: "ingress-nginx"
+  namespace: ingress-nginx
   repoUrl: https://kubernetes.github.io/ingress-nginx
   targetRevision: 4.12.0
 
@@ -98,7 +103,7 @@ wiz:
       wizApiToken:
         secret:
           create: false # eso creates this secrets
-          name: "wiz-api-token"
+          name: wiz-api-token
     wiz-kubernetes-connector:
       enabled: true
       broker:
@@ -107,13 +112,13 @@ wiz:
       enabled: true
       imagePullSecret:
         create: false # eso creates this secrets
-        name: "sensor-image-pull"
+        name: sensor-image-pull
     wiz-admission-controller:
       enabled: true
 
 # Metrics Server Values
 metricsServer:
   enable: true
-  repoUrl: "https://kubernetes-sigs.github.io/metrics-server"
+  repoUrl: https://kubernetes-sigs.github.io/metrics-server
   targetRevision: 3.8.2
-  namespace: "kube-system"
+  namespace: kube-system
