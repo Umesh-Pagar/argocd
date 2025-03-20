@@ -35,6 +35,8 @@ spec:
             {{`{{- if eq .provider "aws" }}`}}
             controller:
               service:
+                targetPorts:
+                  https: 80
                 externalTrafficPolicy: "Local"
                 annotations:
                   service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
